@@ -1,0 +1,74 @@
+@charset "UTF-8";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 菜单按钮 */
+.nav .btn-nav {
+  position: fixed;
+  top: 50px;
+  left: 50px;
+  background: transparent;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 99999;
+  /* 菜单按钮颜色过渡transition */
+  /* 菜单按钮变换transform */
+}
+
+.nav .btn-nav .icon-bar {
+  display: block;
+  margin: 6px 0;
+  width: 70px;
+  height: 8px;
+  background-color: #FEDBCF;
+  box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 0;
+}
+
+.nav .btn-nav:hover .icon-bar {
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
+  background-color: #9AAD75;
+}
+
+.nav .btn-nav.animated .top {
+  -webkit-transform: translateY(10px) rotate(45deg);
+  -moz-transform: translateY(10px) rotate(45deg);
+  -ms-transform: translateY(10px) rotate(45deg);
+  -o-transform: translateY(10px) rotate(45deg);
+  transform: translateY(10px) rotate(45deg);
+}
+
+.nav .btn-nav.animated .bottom {
+  -webkit-transform: translateY(-3px) rotate(-45deg);
+  -moz-transform: translateY(-3px) rotate(-45deg);
+  -ms-transform: translateY(-3px) rotate(-45deg);
+  -o-transform: translateY(-3px) rotate(-45deg);
+  transform: translateY(-3px) rotate(-45deg);
+}
+
+/* 一级菜单 */
+.nav-content {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: -10%;
+  right: 0;
+}
+
+.hideNav {
+  -webkit-animation: hideNav 1s ease forwards;
+  -moz-animation: hideNav 1s ease forwards;
+  -o-animation: hideNav 1s ease forwards;
+  animation: hideNav 1s ease forwards;
+}
+
+/* 
+指定动画名称和动画效果。 
+ */
+@keyframes hideNav {}

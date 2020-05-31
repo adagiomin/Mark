@@ -1,0 +1,49 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.nav .btn-nav { position: fixed; z-index: 99999; top: 3%; left: 3%; background: transparent; border: none; padding: 10px; cursor: pointer; }
+
+.nav .btn-nav .icon-bar { display: block; margin: 6px 0; width: 70px; height: 8px; background-color: #FEDBCF; box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 0; }
+
+.nav .btn-nav:hover .icon-bar { transition: all 1s ease; background-color: #87B7E5; }
+
+.nav .btn-nav.animated .top { transform: translateY(10px) rotate(45deg); }
+
+.nav .btn-nav.animated .bottom { transform: translateY(-3px) rotate(-45deg); }
+
+.nav-content { position: fixed; top: 0; bottom: 0; left: -10%; z-index: 9997; padding: 90px 0; width: 160px; background-color: #E7C4BE; }
+
+.nav-content .nav-head { position: relative; width: 100px; height: 130px; overflow: hidden; margin: 0 auto; background-color: #fff; border: 1px solid #fff; border-radius: .5em; text-align: center; color: #4E4839; cursor: pointer; }
+
+.nav-content .nav-head img { width: 100%; }
+
+.nav-content .nav-list { position: relative; padding: 0; margin: 0 auto; list-style: none; text-align: center; }
+
+.nav-content .nav-list .nav-item { margin: 30px 0; color: #4E4839; text-align: center; transition: all 1s ease; }
+
+.nav-content .nav-list .nav-item .item-anchor { color: #4E4839; font-size: 20px; position: relative; text-decoration: none; padding: 10px; }
+
+.nav-content .nav-list .nav-item .item-anchor:hover, .nav-content .nav-list .nav-item .item-anchor:focus { color: #000; transition: all 1s ease; }
+
+.nav-content .nav-list .nav-item .item-anchor::after { content: ''; position: absolute; width: 1px; height: 3px; left: 0; bottom: 0; z-index: 9; background: transparent; transition: all 1s ease; }
+
+.nav-content .nav-list .nav-item .item-anchor:hover::after, .nav-content .nav-list .nav-item .item-anchor:hover::after { width: 100%; background: #87B7E5; transition: all .5s ease; }
+
+.hidden { display: none; }
+
+.hideNav { animation: hideNav 1s ease forwards; }
+
+@keyframes hideNav { from { left: 0; }
+  to { left: -160px; } }
+
+.showNav { animation: showNav 1s ease forwards; }
+
+@keyframes showNav { from { left: -160px; }
+  to { left: 0; } }
+
+.nav_i_1 { animation: nav_i_1 0s ease forwards; }
+
+@keyframes nav_i_1 { from { opacity: 0;
+    transform: translateX(-100%); }
+  to { opacity: 1;
+    transform: none; } }
+/*# sourceMappingURL=nav.min.css.map */

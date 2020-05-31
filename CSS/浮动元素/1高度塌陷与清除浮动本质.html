@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-family: Georgia, 'Times New Roman', Times, serif
+        }
+
+        .media-block {
+            border: solid 2px #8ac6d1;
+            width: 40%;
+        }
+
+        /* .media-block:after {
+            content: '';
+            display: block;
+            clear: both;
+        } */
+
+        .media-fig {
+            float: left;
+            width: 30%;
+            border: solid 2px #fae3d9;
+            margin-right: 1px;
+        }
+
+        .media-body {
+            float: left;
+            width: 67%;
+            border: solid 2px #fae3d9;
+            margin-bottom: 1px;
+        }
+
+        .media-block::after{
+            content: "我是使用::after在容器末尾处创建出的伪元素";
+            display: block;
+            clear: both;
+            border: solid 2px #fae3d9;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="media-block">
+        <img class="media-fig" src="../img/head.jpg" alt="">
+        <div class="media-body">
+            <p>浏览器在伪元素上方创建除了足够的垂直外边距，从而保住了我和旁边这个duck创建出的空间"</p>
+        </div>
+    </div>
+</body>
+
+</html>

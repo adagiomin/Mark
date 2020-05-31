@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-family: Georgia, 'Times New Roman', Times, serif
+        }
+
+        .box {
+            width: 100%;
+        }
+
+        .div1 {
+            width: 100px;
+            height: 100px;
+            background: #ffb6b9;
+            float: left;
+            background-image: url(../img/head.jpg);
+            background-size: 100% 100%;
+        }
+
+        .div2 {
+            width: 350px;
+            height: 150px;
+            background: #fae3d9;
+            /* clear: left; */
+            /* 设置overflow 触发BFC*/
+            /* overflow: hidden; */
+        }
+
+        .clearleft{
+            clear: left;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="div1"></div>
+        <div class="div2">
+            <p>我是div2中的p1，虽然div1设置了浮动我可以当他不存在，但我里面的文本内容记住了浮动元素的大小，为浮动元素留出了空间。</p>
+            <p>我是div2中的p2，我和p1的文字太多了，我们就会环绕这个浮动元素。</p>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="div1"></div>
+        <div class="div2">
+            <p>我是div2中的p1，虽然div1设置了浮动我可以当他不存在，但我里面的文本内容记住了浮动元素的大小，为浮动元素留出了空间。呜呜呜呜，p2抛弃我了。</p>
+            <p class="clearleft">我是div2中的p2，我设置了clear:left，浏览器在我的上方添加了足够大的外边距，将我移到了浮动元素的下方，我就不用挨着div1这个浮动元素了</p>
+        </div>
+    </div>
+</body>
+
+</html>

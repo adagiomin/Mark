@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>侧边滑动导航栏</title>
+    <link rel="stylesheet" href="./assets/style/nav.min.css">
+</head>
+
+<body>
+    <!-- 菜单左上角动态按钮 -->
+    <div class="nav">
+        <div class="btn-nav">
+            <span class="icon-bar top"></span>
+            <span class="icon-bar bottom"></span>
+        </div>
+    </div>
+
+    <!-- 一级菜单 nav0content-->
+    <div class="nav-content hideNav hidden">
+        <div class="nav-head">
+            <img src="./assets/img/head.jpg" alt="">
+            <h4>@Adagio</h4>
+        </div>
+        <!-- 一级菜单列表 -->
+        <ul class="nav-list">
+			<li class="nav-item nav-item-bt"><a href="#" class="item-anchor"><span>CSS</span></a></li>
+			<li class="nav-item nav-item-bt"><a href="#" class="item-anchor"><span>HTML</span></a></li>
+			<li class="nav-item nav-item-bt"><a href="#" class="item-anchor"><span>JavaScript</span></a></li>
+			<li class="nav-item nav-item-bt"><a href="#" class="item-anchor"><span>Vue</span></a></li>
+		</ul>
+    </div>
+
+    <script src="dist/jquery.min.js"></script>
+    <script src="assets/js/nav.js"></script>
+</body>
+
+</html>

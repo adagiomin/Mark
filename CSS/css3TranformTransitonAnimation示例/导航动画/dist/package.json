@@ -1,0 +1,128 @@
+host = this.get('Host');
+    }
+    if (!host) return '';
+    return host.split(/\s*,\s*/, 1)[0];
+  },
+
+  /**
+   * Parse the "Host" header field hostname
+   * and support X-Forwarded-Host when a
+   * proxy is enabled.
+   *
+   * @return {String} hostname
+   * @api public
+   */
+
+  get hostname() {
+    const host = this.host;
+    if (!host) return '';
+    if ('[' == host[0]) return this.URL.hostname || ''; // IPv6
+    return host.split(':', 1)[0];
+  },
+
+  /**
+   * Get WHATWG parsed URL.
+   * Lazily memoized.
+   *
+   * @return {URL|Object}
+   * @api public
+   */
+
+  get URL() {
+    /* istanbul ignore else */
+    if (!this.memoizedURL) {
+      const originalUrl = this.originalUrl || ''; // avoid undefined in template string
+      try {
+        this.memoizedURL = new URL(`${this.origin}${originalUrl}`);
+      } catch (err) {
+        this.memoizedURL = Object.create(null);
+      }
+    }
+    return this.memoizedURL;
+  },
+
+  /**
+   * Check if the request is fresh, aka
+   * Last-Modified and/or the ETag
+   * still match.
+   *
+   * @return {Boolean}
+   * @api public
+   */
+
+  get fresh() {
+    const method = this.method;
+    const s = this.ctx.status;
+
+    // GET or HEAD for weak freshness validation only
+    if ('GET' != method && 'HEAD' != method) return false;
+
+    // 2xx or 304 as per rfc2616 14.26
+    if ((s >= 200 && s < 300) || 304 == s) {
+      return fresh(this.header, this.response.header);
+    }
+
+    return false;
+  },
+
+  /**
+   * Check if the request is stale, aka
+   * "Last-Modified" and / or the "ETag" for the
+   * resource has changed.
+   *
+   * @return {Boolean}
+   * @api public
+   */
+
+  get stale() {
+    return !this.fresh;
+  },
+
+  /**
+   * Check if the request is idempotent.
+   *
+   * @return {Boolean}
+   * @api public
+   */
+
+  get idempotent() {
+    const methods = ['GET', 'HEAD', 'PUT', 'DELETE', 'OPTIONS', 'TRACE'];
+    return !!~methods.indexOf(this.method);
+  },
+
+  /**
+   * Return the request socket.
+   *
+   * @return {Connection}
+   * @api public
+   */
+
+  get socket() {
+    return this.req.socket;
+  },
+
+  /**
+   * Get the charset when present or undefined.
+   *
+   * @return {String}
+   * @api public
+   */
+
+  get charset() {
+    try {
+      const { parameters } = contentType.parse(this.req);
+      return parameters.charset || '';
+    } catch (e) {
+      return '';
+    }
+  },
+
+  /**
+   * Return parsed Content-Length when present.
+   *
+   * @return {Number}
+   * @api public
+   */
+
+  get length() {
+    const len = this.ge

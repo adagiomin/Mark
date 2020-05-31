@@ -1,0 +1,41 @@
+ options || {};
+
+    if (this.hasEnded) {
+      if (typeof callback === 'function') callback(null, null);
+      return;
+    }
+
+    if (this.serverSession && this.inTransaction()) {
+      this.abortTransaction(); // pass in callback?
+    }
+
+    // release the server session back to the pool
+    this.sessionPool.release(this.serverSession);
+    this[kServerSession] = undefined;
+
+    // mark the session as ended, and emit a signal
+    this.hasEnded = true;
+    this.emit('ended', this);
+
+    // spec indicates that we should ignore all errors for `endSessions`
+    if (typeof callback === 'function') callback(null, null);
+  }
+
+  /**
+   * Advances the operationTime for a ClientSession.
+   *
+   * @param {Timestamp} operationTime the `BSON.Timestamp` of the operation type it is desired to advance to
+   */
+  advanceOperationTime(operationTime) {
+    if (this.operationTime == null) {
+      this.operationTime = operationTime;
+      return;
+    }
+
+    if (operationTime.greaterThan(this.operationTime)) {
+      this.operationTime = operationTime;
+    }
+  }
+
+  /**
+   * Used to determine

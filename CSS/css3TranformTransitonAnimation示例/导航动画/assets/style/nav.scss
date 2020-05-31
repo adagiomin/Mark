@@ -1,0 +1,272 @@
+$iconBarBg:#FEDBCF;
+$iconBarHoverBg:#87B7E5;
+$navContentBg:#E7C4BE;
+$navContentWidth:160px;
+$textColor:#4E4839;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+// 菜单按钮
+.nav {
+    .btn-nav {
+        position: fixed;
+        z-index: 99999;
+        top: 3%;
+        left: 3%;
+        background: transparent;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+
+        .icon-bar {
+            display: block;
+            margin: 6px 0;
+            width: 70px;
+            height: 8px;
+            background-color: $iconBarBg;
+            box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 0;
+        }
+
+        // 菜单按钮颜色过渡transition
+        &:hover .icon-bar {
+            -webkit-transition: all 1s ease;
+            -moz-transition: all 1s ease;
+            -ms-transition: all 1s ease;
+            transition: all 1s ease;
+            background-color: $iconBarHoverBg;
+        }
+
+        // 菜单按钮变换transform
+        &.animated .top {
+            -webkit-transform: translateY(10px) rotate(45deg);
+            -moz-transform: translateY(10px) rotate(45deg);
+            -ms-transform: translateY(10px) rotate(45deg);
+            -o-transform: translateY(10px) rotate(45deg);
+            transform: translateY(10px) rotate(45deg);
+        }
+
+        &.animated .bottom {
+            -webkit-transform: translateY(-3px) rotate(-45deg);
+            -moz-transform: translateY(-3px) rotate(-45deg);
+            -ms-transform: translateY(-3px) rotate(-45deg);
+            -o-transform: translateY(-3px) rotate(-45deg);
+            transform: translateY(-3px) rotate(-45deg);
+        }
+    }
+}
+
+// 一级菜单
+.nav-content {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: -10%;
+    // right: 0;
+    z-index: 9997;
+    padding: 90px 0;
+    width: $navContentWidth;
+    background-color: $navContentBg;
+
+    .nav-head {
+        position: relative;
+        width: 100px;
+        height: 130px;
+        overflow: hidden;
+        margin: 0 auto;
+        background-color: #fff;
+        border: 1px solid #fff;
+        border-radius: .5em;
+        text-align: center;
+        color: #4E4839;
+        cursor: pointer;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .nav-list {
+        position: relative;
+        padding: 0;
+        margin: 0 auto;
+        list-style: none;
+        text-align: center;
+
+        .nav-item {
+            margin: 30px 0;
+            color: $textColor;
+            text-align: center;
+            -webkit-transition: all 1s ease;
+            -moz-transition: all 1s ease;
+            -ms-transition: all 1s ease;
+            -o-transition: all 1s ease;
+            transition: all 1s ease;
+
+            // a标签
+            .item-anchor {
+                color: $textColor;
+                font-size: 20px;
+                position: relative;
+                text-decoration: none;
+                padding: 10px;
+
+                &:hover,
+                &:focus {
+                    color: #000;
+                    -webkit-transition: all 1s ease;
+                    -moz-transition: all 1s ease;
+                    -ms-transition: all 1s ease;
+                    -o-transition: all 1s ease;
+                    transition: all 1s ease;
+                }
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    width: 1px;
+                    height: 3px;
+                    left: 0;
+                    bottom: 0;
+                    z-index: 9;
+                    background: transparent;
+                    -webkit-transition: all 1s ease;
+                    -moz-transition: all 1s ease;
+                    -ms-transition: all 1s ease;
+                    -o-transition: all 1s ease;
+                    transition: all 1s ease;
+                }
+
+                &:hover::after,
+                &:hover::after {
+                    width: 100%;
+                    background: $iconBarHoverBg;
+                    -webkit-transition: all .5s ease;
+                    -moz-transition: all .5s ease;
+                    -ms-transition: all .5s ease;
+                    -o-transition: all .5s ease;
+                    transition: all .5s ease;
+                }
+            }
+        }
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.hideNav {
+    -webkit-animation: hideNav 1s ease forwards;
+    -moz-animation: hideNav 1s ease forwards;
+    -o-animation: hideNav 1s ease forwards;
+    animation: hideNav 1s ease forwards;
+}
+
+// 指定动画名称和动画效果。 
+@keyframes hideNav {
+    from {
+        left: 0;
+    }
+
+    to {
+        left: -$navContentWidth;
+    }
+}
+
+@-webkit-keyframes hideNav {
+    from {
+        left: 0;
+    }
+
+    to {
+        left: -$navContentWidth;
+    }
+}
+
+@-moz-keyframes hideNav {
+    from {
+        left: 0;
+    }
+
+    to {
+        left: -$navContentWidth;
+    }
+}
+
+@-o-keyframes hideNav {
+    from {
+        left: 0;
+    }
+
+    to {
+        left: -$navContentWidth;
+    }
+}
+
+.showNav {
+    -webkit-animation: showNav 1s ease forwards;
+    -moz-animation: showNav 1s ease forwards;
+    -o-animation: showNav 1s ease forwards;
+    animation: showNav 1s ease forwards;
+}
+
+@keyframes showNav {
+    from {
+        left: -$navContentWidth;
+    }
+
+    to {
+        left: 0;
+    }
+}
+
+@-webkit-keyframes showNav {
+    from {
+        left: -$navContentWidth;
+    }
+
+    to {
+        left: 0;
+    }
+}
+
+@-moz-keyframes showNav {
+    from {
+        left: -$navContentWidth;
+    }
+
+    to {
+        left: 0;
+    }
+}
+
+.nav_i_1 {
+    -webkit-animation: nav_i_1 0s ease forwards;
+    -moz-animation: nav_i_1 0s ease forwards;
+    -o-animation: nav_i_1 0s ease forwards;
+    animation: nav_i_1 0s ease forwards;
+}
+
+@keyframes nav_i_1{
+    from{
+        opacity: 0;
+        -webkit-transform:translateX(-100%) ;
+        -moz-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+        -o-transform: translateX(-100%);
+        transform:translateX(-100%);
+    }
+
+    to{
+        opacity: 1;
+        -webkit-transform:none ;
+        -moz-transform: none;
+        -ms-transform: none;
+        -o-transform: none;
+        transform:none;
+    }
+}
