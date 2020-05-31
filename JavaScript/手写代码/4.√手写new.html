@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+function _new(Con, ...args) {
+    // 1.创建新对象
+    // 2.空对象的__proto__指向可构造函数的prototype成员对象
+    // 3.使用apply调用构造器函数，属性和方法被添加到this引用的对象中
+    // 1、2步骤也可写成一下两种写法
+    // let obj = Object.create(Con.prototype)
+    // Object.setPrototypeOf(obj, Con.prototype)
+    let obj = {}
+    obj.__proto__ = Con.prototype
+    let result = Con.apply(obj, ...args)
+    return result instanceof Object ? result : obj
+}
+function Person(name, age) {
+    this.name = name
+    this.age = age
+    return this
+}
+Person.prototype.sing = function () {
+    console.log('hi')
+}
+let zhangsan = _new(Person, ['zhangsan', '18'])
+zhangsan.sing()
+    </script>
+</body>
+
+</html>

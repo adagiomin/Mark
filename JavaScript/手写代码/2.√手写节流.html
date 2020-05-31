@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节流</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: #8ac6d1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box" draggable="true"></div>
+    <script>
+        window.onload = function () {
+            // 时间戳版
+            function throttle(fn, wait = 500) {
+                let previous = 0
+                return function () {
+                    let now = Date.now()
+                    if (now - previous > wait) {
+                        fn.apply(this, arguments)
+                        previous = now
+                    }
+                }
+            }
+            // 定时器版
+            function throttle1(fn, wait = 500) {
+                let timer = null
+                return function () {
+                    if (!timer) {
+                        timer = setTimeout(() => {
+                            timer = null
+                            fn.apply(this, arguments)
+                        }, wait)
+                    }
+                }
+            }
+            const box = document.getElementById('box')
+            box.addEventListener('drag', throttle(function (event) {
+                console.log(event.offsetX, event.offsetY)
+            }, 2000))
+        }
+    </script>
+</body>
+
+</html>

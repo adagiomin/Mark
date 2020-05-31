@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #button1{
+            padding: 10px;
+            border: 10px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="button1">点击弹出本按钮的clientLeft和clientTop</button>
+    <script>
+        document.getElementById("button1").onclick = function () {
+            alert("clientLeft: " + this.clientLeft + ", \r\nclientTop: " + this.clientTop);
+        };
+    </script>
+</body>
+
+</html>

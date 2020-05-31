@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖</title>
+</head>
+
+<body>
+    <p>问题引入</p>
+    <p>监听一个输入框，文字变化后触发change事件，直接用keyup事件，则会频繁触发change事件</p>
+    <p>防抖：用户输入结束或暂停时，才会触发change事件。防止频繁输入</p>
+    <input type="text" name="" id="input1" placeholder="请输入内容">
+    <script>
+        window.onload = function () {
+            // 非立即执行版本
+            // function deBounce(fn, delay = 500) {
+            //     let timer = null
+            //     // console.log(this) //window，因为addEventListener中是deBounce()，此时s无e.target
+            //     return function () { //真正当作addEventListener中的回调函数，内部的this指向input
+            //         if (timer) {
+            //             clearTimeout(timer)
+            //         }
+            //         timer = setTimeout(() => { //如果改成function则this又指回了window
+            //             fn.apply(this, arguments) //执行给定函数
+            //         }, delay)
+            //     }
+            // }
+
+            function debounce(func, delay = 500) {
+                let timeout = null
+                return function () {
+                    if (timeout)
+                        clearTimeout(timeout) // 如果持续触发，那么就清除定时器，定时器的回调就不会执行。
+                    timeout = setTimeout(() => {
+                        func.apply(this, arguments)
+                    }, delay)
+                }
+            }
+
+            // 立即执行版本
+            function debounce1(fn, delay = 500) {
+                let timeout = null
+                return function () {
+                    if (timeout)
+                        clearTimeout(timeout)
+                    let callNow = !timeout
+                    timeout = setTimeout(() => {
+                        timeout = null
+                    }, delay)
+                    if (callNow) {
+                        fn.apply(this, arguments)
+                    }
+                }
+            }
+            const input1 = document.getElementById("input1")
+            input1.addEventListener('keyup', debounce(function () {
+                console.log(input1.value)
+            }, 1000), false)
+
+            // 如果不封装
+            // let timer = null
+            // input1.addEventListener('keyup', function () {
+            //     if (timer) {
+            //         clearTimeout(timer)
+            //     }
+            //     timer = setTimeout(() => {
+            //         console.log(this.value)
+            //     }, 500)
+            // })
+        }
+    </script>
+</body>
+
+</html>
